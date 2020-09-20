@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+public class Main {
+    static Scanner in = new Scanner(System.in);
+
+    public static void main(String[] args) {
+
+        int num1 = in.nextInt();
+        int num2 = in.nextInt();
+        int res = num1 + num2;
+
+        int num1_count = String.valueOf(num1).length();
+        int num2_count = String.valueOf(num2).length();
+        int res_cout = String.valueOf(res).length();
+
+        int i = 10 - num1_count;
+        int ii = 10 - num2_count;
+        int iii = 10 - res_cout;
+
+        StringBuffer sb = new StringBuffer(" ");
+        for (int o = 1; o < i; o++){
+            sb.insert(o," ");
+        }
+
+        StringBuffer sb1 = new StringBuffer(" ");
+        for (int o = 1; o < ii; o++){
+            sb1.insert(o," ");
+        }
+
+        StringBuffer sb2 = new StringBuffer(" ");
+        for (int o = 1; o < iii; o++){
+            sb2.insert(o," ");
+        }
+
+        System.out.print(sb);
+        System.out.println(num1);
+        System.out.print(sb1);
+        System.out.println(num2);
+        System.out.println("----------");
+        System.out.print(sb2);
+        System.out.println(res);
+    }
+}
