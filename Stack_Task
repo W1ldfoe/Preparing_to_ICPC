@@ -1,0 +1,76 @@
+//Створити стек цілочисельних значень, для реалізації використовуючи однозв'язні списки.
+// Реалізувати операції додавання (push) і видалення (pop) елемента з стека.
+// Додайте в стек числа 1, 2, 3, 4, 5 і роздрукуйте вміст стека.
+// Видаліть 3 елементи з стека, і роздрукуйте вміст стека ще раз. Знайдіть суму елементів стека.
+
+class Stack {
+    private int mSize;
+    private int[] stackArray;
+    private int top;
+
+    public Stack(int m) {
+        this.mSize = m;
+        stackArray = new int[mSize];
+        top = -1;
+    }
+    
+    public void Push_Element(int element) {
+        stackArray[++top] = element;
+    }
+
+    public int Pop_Element() {
+        return stackArray[top--];
+    }
+
+    public boolean isEmpty() {
+        return (top == -1);
+    }
+
+}
+
+ class Main {
+
+    public static void main(String[] args) {
+        int sum=0;
+        Stack mStack = new Stack(10);
+
+        mStack.Push_Element(1);
+        mStack.Push_Element(2);
+        mStack.Push_Element(3);
+        mStack.Push_Element(4);
+        mStack.Push_Element(5);
+
+
+
+        System.out.print("Стек: ");
+        while (!mStack.isEmpty()) {
+            int value = mStack.Pop_Element();
+            System.out.print(value);
+            System.out.print(" ");
+        }
+        mStack.Push_Element(1);
+        mStack.Push_Element(2);
+        mStack.Push_Element(3);
+        mStack.Push_Element(4);
+        mStack.Push_Element(5);
+
+        mStack.Pop_Element();
+        mStack.Pop_Element();
+        mStack.Pop_Element();
+
+
+
+
+
+        System.out.print("Стек: ");
+        while (!mStack.isEmpty()) {
+            int value = mStack.Pop_Element();
+            System.out.print(value);
+            sum+=value;
+            System.out.print(" ");
+        }
+        System.out.println("");
+        System.out.println("sum="+sum);
+
+    }
+}
