@@ -1,0 +1,87 @@
+public class Main {
+
+    public static void main(String[] args){
+
+        try{
+            Scanner in = new Scanner(System.in);
+            int Size_1, Size_2, Size_3;
+            int First_Stack_Sum=0, Second_Stack_Sum=0, Third_Stack_Sum=0;
+            int min=1000000000;
+//
+            System.out.println("Введіть  Size_1,Size_2,Size_3>>");
+            Size_1=in.nextInt();
+            Size_2=in.nextInt();
+            Size_3=in.nextInt();
+            Stack First = new Stack<Integer>();
+            Stack Second = new Stack<Integer>();
+            Stack Third = new Stack<Integer>();
+//
+            System.out.print("Заповнимо Перший стек>>");
+            for(int i=0; i < Size_1; i++){
+                int temp = in.nextInt();
+                First.push(temp);
+                First_Stack_Sum+=temp;
+            }
+//
+            System.out.print("Заповнимо Другий стек>> ");
+            for(int i=0; i < Size_2; i++){
+                int temp = in.nextInt();
+                Second.push(temp);
+                Second_Stack_Sum+=temp;
+            }
+//
+            System.out.print("Заповнимо Третій стек>>");
+            for(int i=0; i < Size_3; i++){
+                int temp = in.nextInt();
+                Third.push(temp);
+                Third_Stack_Sum+=temp;
+            }
+//
+            while(true) {
+                if (min > First_Stack_Sum) min = First_Stack_Sum;
+                if (min > Second_Stack_Sum) min = Second_Stack_Sum;
+                if (min > Third_Stack_Sum) min = Third_Stack_Sum;
+//
+                while (First_Stack_Sum > min) {
+                    int temp = (int) First.pop();
+                    First_Stack_Sum = First_Stack_Sum - temp;
+                    if (First_Stack_Sum < min) {
+                        min = First_Stack_Sum;
+                    }
+//
+                }
+                while (Second_Stack_Sum > min) {
+                    int temp = (int) Second.pop();
+                    Second_Stack_Sum = Second_Stack_Sum - temp;
+                    if (Second_Stack_Sum < min) {
+                        min = Second_Stack_Sum;
+                    }
+//
+                }
+                while (Third_Stack_Sum > min) {
+                    int temp = (int) Third.pop();
+                    Third_Stack_Sum = Third_Stack_Sum - temp;
+                    if (Third_Stack_Sum < min) {
+                        min = Third_Stack_Sum;
+                    }
+//
+                }
+                if(First_Stack_Sum==Second_Stack_Sum&&Second_Stack_Sum==Third_Stack_Sum&&min!=0){
+                    System.out.println("max>> " + min);
+                    return;
+                }
+                if(min<=0){
+                    System.out.println("нормальне значення не знайдено");
+                    return;
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println("Не написано в тз");
+            main(new String[]{"ah shit,here we go again"});
+            return;
+        }
+
+
+    }
+}
