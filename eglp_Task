@@ -1,0 +1,32 @@
+
+import java.util.Scanner;
+
+public class Main {
+
+    static Scanner in = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        float viborzi = in.nextInt();
+        int kandodati = in.nextInt();
+
+        int[] arr_kandidati = new int[kandodati];
+
+        int max = 0;
+
+        for (int i = 0; i < viborzi; i++){
+            int pos = in.nextInt();
+            arr_kandidati[pos-1]++;
+//            System.out.print(Arrays.toString(arr_kandidati));
+        }
+        for (int i = 0; i < arr_kandidati.length; i++){
+            if (max < arr_kandidati[i]){
+                max = arr_kandidati[i];
+            }
+        }
+//        System.out.println(max);
+        if (viborzi/2 < max){
+            System.out.println("YES");
+        }else if (viborzi/2 >= max)
+            System.out.println("NO");
+    }
+}
