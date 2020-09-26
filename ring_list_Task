@@ -1,0 +1,79 @@
+//Варінт 20 Дикий ПП-12
+//Дано кільцевий список. Описати функцію, що підраховує кількість елементів у списку у яких лівий «сусід» більше «правого».
+import java.util.Scanner;
+
+
+class lab4
+{
+    static int get_int()
+    {
+        int choise_num;
+        while (true)
+        {
+            final Scanner num = new Scanner(System.in);
+            if (num.hasNextInt())
+            {
+                choise_num = num.nextInt();
+                break;
+            }
+            System.out.println("Вы ввели не число");
+        }
+        return choise_num;
+    }
+    static Scanner value = new Scanner(System.in);
+    public static void main(String[] args)
+    {
+        System.out.println("Введите количество елементов >>");
+        int length = get_int(), payload, counter_left_bigger = 0;
+        ring_list rlist = new ring_list();
+        for(int i=0; i<length; i++)
+        {
+            System.out.println("Введите число какое хотите задать >>");
+            payload = get_int();
+            rlist.add(payload, i);
+        }
+        ring_list_element el = rlist.first;
+        do
+        {
+            if(rlist.last.payload>el.payload)
+                counter_left_bigger++;
+            el = el.next_ring_list;
+        }
+        while (el != rlist.last);
+        counter_left_bigger = length - counter_left_bigger;
+        System.out.println("У " +counter_left_bigger+" елементов левый сосед больше чем первый");
+    }
+}
+
+class ring_list
+{
+    public ring_list_element first;
+    public ring_list_element last;
+    public void add(int new_payload, int new_number)
+    {
+        ring_list_element new_element = new ring_list_element();
+        new_element.payload = new_payload;
+        new_element.number = new_number;
+        if(first == null)
+        {
+            first = new_element;
+            last = first;
+            first.next_ring_list = last;
+            first.past_ring_list = last;
+            last.next_ring_list = first;
+            last.past_ring_list = first;
+            return;
+        }
+
+        new_element.past_ring_list = last;
+        last.next_ring_list = new_element;
+        last = new_element;
+    }
+}
+
+class ring_list_element
+{
+    public ring_list_element next_ring_list;
+    public ring_list_element past_ring_list;
+    public int number, payload;
+}
