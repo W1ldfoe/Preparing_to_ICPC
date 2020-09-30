@@ -1,0 +1,247 @@
+//1. В одновимірному масиві, що складається з N дійсних елементів, обчислити:
+// – максимальний елемент масиву;– суму елементів масиву, що розташовані до останнього додатного елемента.
+//2. Видалити з масиву всі елементи, модуль яких знаходиться в інтервалі [a,b]. Елементи, що звільняться в кінці масиву заповнити нулями.
+//3. Дана прямокутна цілочисельна матриця. Визначити: – суму елементів у тих стовпцях, що не містять від’ємних елементів;
+//– мінімум серед сум модулів елементів діагоналей, паралельних побічній діагоналі матриці
+//4. Дана дійсна квадратна матриця розмірності N. Заповнити матрицю в заштрихованій області одиницями, в не заштрихованій – нулями.
+//Дикий--пп12
+
+package com.company;
+
+
+import java.util.Random;
+import java.util.Scanner;
+
+class Arrays_ASD{
+    public static void Found_Max() {
+        int size = 0, min = 0;
+        Scanner in = new Scanner(System.in);
+        System.out.print("Input a size: ");
+//#########################
+        if (in.hasNextInt()) { // возвращает истинну если с потока ввода можно считать целое число
+            size = in.nextInt(); // считывает целое число с потока ввода и сохраняем в переменную
+
+        } else {
+            System.out.println("Вы ввели не целое число");
+            System.exit(0);
+        }
+        if (size <= 0) {
+            System.out.println("розмір масиву має бути більше 0");
+            System.exit(0);
+        }
+        System.out.println("size=" + size);
+//#########################################
+        int[] m = new int[size];
+        int[] f = new int[size];
+        Random rnd = new Random();
+//################################
+        int a = 0,sum=0,Num=0;
+        for (int i = 0; i < m.length; i++) {
+            m[i] = a = (int) (Math.random() * 200 - 100);
+            System.out.print(m[i] + " ");
+        }
+
+//##############
+        int max = m [0]; int position=0, summ=0;
+        for (int i = 0; i < m.length; i++) {
+            if (max < m[i]) max = m[i];
+            if (m[i]>0) position=i;
+        }
+        for (int i=0; i<=position; i++) {
+            summ=summ+m[i];
+        }
+        System.out.println("Maximum ="+ max + " summa="+summ);}
+    public static int min(int a, int b, int c, int d){
+         int m1=0,m2=0,m3=0;
+        m1 = Math.min(a, b);
+        m2 = Math.min(m1, c);
+        m3 = Math.min(m2, d);
+        return m3;}
+    public static void sum(){
+        int[][] a = new int[3][4];
+        int x=a.length;
+        int Str1=0,Str2=0,Str3=0,Str4=0;
+        Random rnd = new Random();
+//
+        for (int i=0;i < a.length;i++) {
+            for (int j=0;j < a[i].length;j++) {
+                a[i][j]=rnd.nextInt(200) - 100;
+            }
+        }
+        for (int i=0;i < a.length;i++,System.out.println()) {
+            for (int j=0;j < a[i].length;j++) {
+                System.out.print(a[i][j]+" ");
+            }
+        }
+
+
+        for (int i=0;i<x;i++){
+            if(a[i][0]<0){Str1=0;break;}
+            Str1+=a[i][0];
+        }
+        System.out.println("Сумма елементов первого столбца равна: " +Str1);
+        for (int i=0;i<x;i++){
+            if(a[i][1]<0){Str2=0;break;}
+            Str2+=a[i][1];
+        }
+        System.out.println("Сумма елементов второго столбца равна: " +Str2);
+        for (int i=0;i<x;i++){
+            if(a[i][2]<0){Str3=0;break;}
+            Str3+=a[i][2];
+        }
+        System.out.println("Сумма елементов третьего столбца равна: " +Str3);
+        for (int i=0;i<x;i++){
+            if(a[i][3]<0){{Str4=0;break;}}
+            Str4+=a[i][3];
+        }
+        System.out.println("Сумма елементов четвертого столбца равна: " +Str4);
+//
+
+
+        int sum1=0,sum2=0,sum3=0,sum4=0;
+        int m=4;
+        for(int i=0;i<x;i++){
+            sum1+=a[0][i];
+        }
+
+        sum2 += a[1][0];
+        for(int i = m / 2; i < m; ++i){
+            sum3+= a[1][i];}
+        for(int i = 2; i < m; ++i){
+            sum4+= a[2][i];}
+        System.out.print("Минимальная сумма диагоналей>>");
+        System.out.print(min(sum1,sum2,sum3,sum4));
+
+
+
+
+
+    }
+    public static void interval() {
+        int size = 0, a = 0, b = 0;
+        Scanner in = new Scanner(System.in);
+        System.out.print("Input a size: ");
+//#########################
+        if (in.hasNextInt()) { // возвращает истинну если с потока ввода можно считать целое число
+            size = in.nextInt(); // считывает целое число с потока ввода и сохраняем в переменную
+
+        } else {
+            System.out.println("Вы ввели не целое число");
+            System.exit(0);
+        }
+        if (size <= 0) {
+            System.out.println("розмір масиву має бути більше 0");
+            System.exit(0);
+        }
+//#########################################
+        int[] m = new int[size];
+        int[] f = new int[size];//  f= m*-1
+        Random rnd = new Random();
+        int k = 0;
+        for (int i = 0; i < m.length; i++) {
+            m[i] = k = (int) (Math.random() * 200 - 100);
+            System.out.println(m[i] + " ");
+        }
+        System.out.println("перевернемо всі відємні числа>>>");
+        for(int i=0;i<size;i++) {
+            f[i]=m[i];
+            if(m[i]<0){
+                f[i]=m[i]*-1;}
+            System.out.println(f[i] + " ");
+        }
+        Scanner d = new Scanner(System.in);
+        System.out.print("Input bound a >>> ");
+//#########################
+        if (d.hasNextInt()) { // возвращает истинну если с потока ввода можно считать целое число
+            a = d.nextInt(); // считывает целое число с потока ввода и сохраняем в переменную
+
+        } else {
+            System.out.println("Вы ввели не целое число");
+            System.exit(0);
+        }
+        Scanner l = new Scanner(System.in);
+        System.out.print("Input bound b >>> ");
+//#########################
+        if (l.hasNextInt()) { // возвращает истинну если с потока ввода можно считать целое число
+            a = l.nextInt(); // считывает целое число с потока ввода и сохраняем в переменную
+
+        } else {
+            System.out.println("Вы ввели не целое число");
+            System.exit(0);
+        }
+        for(int i=0;i<size;i++) {
+        if (f[i] <= a && f[i] >= b) {
+            f[i]=0;}
+        System.out.print(f[i] + " ");
+        }
+
+
+    }
+    public static void Hourglass(){
+        int size = 0, min = 0;
+        Scanner in = new Scanner(System.in);
+        System.out.print("Input a size: ");
+//#########################
+        if (in.hasNextInt()) { // возвращает истинну если с потока ввода можно считать целое число
+            size = in.nextInt(); // считывает целое число с потока ввода и сохраняем в переменную
+
+        } else {
+            System.out.println("Вы ввели не целое число");
+            System.exit(0);
+        }
+        if (size <= 0) {
+            System.out.println("розмір масиву має бути більше 0");
+            System.exit(0);
+        }
+
+        int[][] arr = new int[size][size];
+
+        for (int i = 0; i < arr.length /2 + 1 ; i++) {
+            for (int j =  i; j < arr.length - i; j++) {
+                arr[i][j] = 1;
+                arr[arr.length - i - 1][j] = 1;
+            }
+        }
+        for (int []row:arr){
+            for (int value: row){
+                System.out.print(" " + value + " ");
+            }
+            System.out.println();
+        }
+    }
+
+}
+//#############
+public class Main {
+    public static void main(String[] args) {
+        int var = 0;
+        System.out.print("Chose the number of Task(1-4)");
+        Scanner in = new Scanner(System.in);
+        if (in.hasNextInt()) {
+            var = in.nextInt();
+
+        } else {
+            System.out.println("Вы ввели не  число");
+            System.exit(0);
+        }
+
+        switch (var) {
+            case 1:
+                Arrays_ASD.Found_Max();
+                break;
+            case 2:
+               Arrays_ASD.interval();
+                break;
+            case 3:
+                Arrays_ASD.sum();
+                break;
+            case 4:
+                Arrays_ASD.Hourglass();
+                break;
+            default:
+                System.out.print("Не написано в тз");
+
+        }
+
+    }
+}
