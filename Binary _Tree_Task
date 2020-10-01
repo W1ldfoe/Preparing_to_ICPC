@@ -1,0 +1,150 @@
+package com.company;
+//1. Описати функцію, що:
+//a) визначає, чи входить вершина із записом Е в дерево Т;
+//б) якщо такий запис не знайдено, то додати його.
+//2. Студенти здали п'ять іспитів. Потрібно відсортувати список студентів за зростанням загального балу за результатами складених іспитів.
+import java.util.Scanner;
+
+class Node {
+
+    public int key;
+    public String data;
+    public Node left_node;
+    public Node rightChild;
+
+
+    public void printNode(){
+        System.out.println("KEY " + key + " DATA: " + data);
+    }
+}
+
+
+
+
+
+class Tree {
+
+    public Node root;
+
+
+
+
+    public Node find(int key){
+        Node current = root;
+        while(current.key!=key){
+            if(current.key<key){
+                current = current.rightChild;
+            }else{
+                current = current.left_node;
+            }
+            if(current==null){
+                return null;
+            }
+        }
+        return current;
+    }
+
+
+    public void insert(int key, String data){
+        Node node = new Node();
+        node.key = key;
+        node.data = data;
+        if(root==null){
+            root = node;
+        }else{
+            Node current = root;
+            Node prev = null;
+            while (true){
+                prev = current;
+                if(key<prev.key){
+                    current = current.left_node;
+                    if(current==null){
+                        prev.left_node = node;
+                        return;
+                    }
+                }else{
+                    current = current.rightChild;
+                    if(current==null){
+                        prev.rightChild = node;
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+
+
+    public void print(Node startNode){
+        if(startNode != null){
+            print(startNode.left_node);
+            startNode.printNode();
+            print(startNode.rightChild);
+        }
+    }
+}
+
+
+
+public class Main {
+
+    public static void main(String[] args) {
+        int Task=0;
+        System.out.println("Завдання(1/2) ");
+        Scanner l = new Scanner(System.in);
+        if (l.hasNextInt()) { // возвращает истинну если с потока ввода можно считать целое число
+            Task = l.nextInt(); // считывает целое число с потока ввода и сохраняем в переменную
+
+        } else {
+            System.out.println("Вы ввели не целое число");
+            System.exit(0);
+
+        }
+        switch (Task) {
+            case 1:
+                Tree tree = new Tree();
+                tree.insert(3, "35");
+                tree.insert(8, "44");
+                tree.insert(1, "82");
+                tree.insert(2, "21");
+                Node find_Main = tree.find(3);
+                find_Main.printNode();
+                tree.print(find_Main);
+
+                Node findE = tree.find(6);
+                if(findE==null){
+                    System.out.println("Елемент Е не знайдено додаю елемент...");
+                    tree.insert(6, "E");
+
+                }
+                find_Main.printNode();
+                tree.print(find_Main);
+                break;
+            case 2:
+                Tree Exams = new Tree();
+                Exams.insert(3,"Оби-Ван Кеноби 427");
+                Exams.insert(1,"Джокер 305");
+                Exams.insert(5,"М'Айк Лжец 500");
+                Exams.insert(2,"Иллидан Ярость Бури 375");
+                Exams.insert(4,"Лютик 469");
+                Node mok=Exams.find(5);
+                mok.printNode();
+                Node hok=Exams.find(2);
+                hok.printNode();
+                Node lok=Exams.find(3);
+                lok.printNode();
+                Exams.print(lok);
+                System.out.println("Сортировка...");
+
+                Exams.print(lok);
+
+
+                break;
+            default:
+                System.out.print("Не написано в тз");
+                System.exit(0);
+
+        }
+
+    }
+}
