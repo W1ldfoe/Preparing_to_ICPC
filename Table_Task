@@ -1,0 +1,47 @@
+package com.company;
+import java.util.LinkedList;
+import java.util.Scanner;
+//Дикий ПП-12 варіант 2
+public class Main {
+    public static void main(String args[]){
+
+        try{
+            Scanner l = new Scanner(System.in);
+            int n, add;
+            System.out.println("Введіть кількість початкових елементів>> ");
+            n=l.nextInt();
+            System.out.println("Введіть кількість додаткових елементів елементів>> ");
+            add=l.nextInt();
+
+            LinkedList List_for_data = new LinkedList<Integer>();
+            System.out.println("Заповнення списку");
+
+            for(int i=0; i < n; i++){
+                System.out.print("N"+(i+1)+" : ");
+                List_for_data.add(l.nextInt());
+            }
+            for(int i=0;i<n;i++){
+
+                System.out.println(List_for_data.get(i));
+            }
+            System.out.println("Введіть додатковий елемент");
+            for(int i=0; i < add; i++) {
+                System.out.print("A "+(i+1)+">> ");
+                List_for_data.add(l.nextInt());
+            }
+            for(int i=0;i<n+add;i++){
+                System.out.println(List_for_data.get(i));
+            }
+            System.out.println("Сортування...");
+            List_for_data.sort(null);
+            for(int i=0;i<n+add;i++){
+                System.out.println(List_for_data.get(i));
+            }
+        }
+        catch(Exception e){
+            System.out.println("не написано в тз");
+            main(new String[]{"ah shit,here we go again"});
+            return;
+        }
+    }
+}
